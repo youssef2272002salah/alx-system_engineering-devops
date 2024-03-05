@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Installs HAProxy with the following configurations:
+# - Enables management via the init script.
+# - Distributes requests using a round-robin algorithm.
+
+sudo apt-get install -y haproxy
+
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
+cat <<EOT | sudo tee -a /etc/haproxy/haproxy.cfg
+frontend y27s.tech
+    timeout client  30000
+    bind 0:80
+    default_backend Randommall.tech_backend
+
+backend Randommall.tech_backend
+    timeout connect  3000
+    timeout server  30000
+    balance roundrobin
+    server 483064-web-01 100.25.142.157:80 check
+    server 483064-web-02 54.160.93.135:80 check
+EOT
+
+sudo service haproxy restart
