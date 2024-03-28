@@ -19,9 +19,12 @@ if __name__ == "__main__":
     todo_data_filtered_before = [
         res for res in todo_data if res["userId"] == user_id]
     todo_data_filtered_after = [
-        res for res in todo_data if res["userId"] == user_id and res["completed"]]
+        res for res in todo_data
+        if res["userId"] == user_id and res["completed"]]
 
-    print(
-        f"Employee {name} is done with tasks({len(todo_data_filtered_after)}/{len(todo_data_filtered_before)}):")
+    print(f"Employee {name} is done with tasks("
+          f"{len(todo_data_filtered_after)}/"
+          f"{len(todo_data_filtered_before)}):")
+
     for i in todo_data_filtered_after:
         print("\t " + i["title"])
