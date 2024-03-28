@@ -25,8 +25,8 @@ if __name__ == "__main__":
 
     csv_file = f"{user_id}.csv"
 
-    with open(csv_file, 'a', newline='') as file:
-        writer = csv.writer(file)
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
         for item in todo_data_filtered_before:
             row_data = [item["userId"], name, item["completed"], item["title"]]
