@@ -15,7 +15,7 @@ if __name__ == "__main__":
     response2 = get('https://jsonplaceholder.typicode.com/users')
     data2 = response2.json()
     name = [res for res in data2 if res["id"] == user_id]
-    name = name[0]["name"]
+    name = name[0]["username"]
 
     todo_data_filtered_before = [
         res for res in todo_data if res["userId"] == user_id]
