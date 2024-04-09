@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 ''' 0-subs.py '''
 import requests
-import json
 
 
 def number_of_subscribers(subreddit):
