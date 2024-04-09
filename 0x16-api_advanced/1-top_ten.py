@@ -1,23 +1,23 @@
 #!/usr/bin/python3
-''' 0-subs.py '''
+"""
+Queries the Reddit API and prints the titles of the first 10 hot posts listed
+for a given subreddit.
+"""
 import requests
 
 
 def top_ten(subreddit):
-    ''' returns number of subscribers '''
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(
+    """
+    Queries the Reddit API and prints the titles of the first 10 hot posts
+    listed for a given subreddit.
+    """
+    url = 'https://www.reddit.com/r/{}/hot.json?show="all"&limit=10'.format(
         subreddit)
-    headers = {"User-Agent": "My-User-Agent"}
-    params = {"limit": 10}
-    response = requests.get(
-        url,
-        headers=headers,
-        params=params,
-        allow_redirects=False)
+    headers = {'User-Agent': 'Python/1.0(Holberton School 0x16)'}
+    response = requests.get(url, headers=headers)
     try:
-
-        data = response.json().get("data").get("children")
-        for child in data:
-            print(child.get("data").get("title"))
+        top_ten = response.json()['data']['children']
+        for post in top_ten:
+            print(post['data']['title'])
     except KeyError:
         print("None")
